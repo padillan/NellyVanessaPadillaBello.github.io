@@ -62,7 +62,7 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style: none;
     }
 
@@ -379,6 +379,7 @@
     .paper-links {
       display: flex;
       gap: 1rem;
+      align-items: center;
     }
 
     .paper-links a {
@@ -398,6 +399,149 @@
       border-radius: 999px;
       background: #c8ead8;
       color: #1a3a4a;
+    }
+
+    /* ── CONFERENCES ─────────────────────────────────────────── */
+    #conferences { background: var(--bg); }
+
+    .conf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .conf-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .conf-item:hover { border-color: #b8c9e0; }
+
+    .conf-year {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0.55;
+      padding-top: 3px;
+      line-height: 1.3;
+    }
+
+    .conf-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+      line-height: 1.45;
+    }
+
+    .conf-venue {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .conf-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .conf-badge {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .conf-badge.oral      { background: #dbeafe; color: #1e40af; }
+    .conf-badge.poster    { background: #ede9fe; color: #5b21b6; }
+    .conf-badge.invited   { background: #fef3c7; color: #92400e; }
+    .conf-badge.virtual   { background: #f0fdf4; color: #166534; }
+
+    .conf-location {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+
+    /* ── TEACHING ────────────────────────────────────────────── */
+    #teaching { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .teaching-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .teaching-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      padding: 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .teaching-item:hover { border-color: #b8c9e0; }
+
+    .teaching-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .teaching-role {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+      font-family: var(--serif);
+    }
+
+    .teaching-course {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .teaching-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .teaching-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+
+    .teaching-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
     }
 
     /* MEDIA GALLERY */
@@ -610,6 +754,7 @@
       nav { padding: 0 1rem; }
       .nav-links { gap: 1rem; }
       section { padding: 3.5rem 1.25rem; }
+      .conf-item { grid-template-columns: 56px 1fr; }
     }
   </style>
 </head>
@@ -622,6 +767,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#papers">Papers</a></li>
+      <li><a href="#conferences">Conferences</a></li>
+      <li><a href="#teaching">Teaching</a></li>
       <li><a href="#media">Media</a></li>
       <li><a href="#blog">Blog</a></li>
     </ul>
@@ -637,31 +784,32 @@
     <a href="#projects" class="hero-cta">View my work →</a>
     <br><span class="edit-hint">✏️ Edit this file to personalize all text, images, and links</span>
   </header>
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <p class="section-label">About me</p>
-    <div class="about-grid">
-      <div class="about-photo-placeholder">
-        <img src="images_/photo.jpg" alt="Nelly Vanessa Padilla Bello" />
-      </div>
-      <div class="about-text">
-        <h3>Nelly Vanessa Padilla Bello</h3>
-        <p class="role">Postdoctoral Researcher · Department of Dentistry · University Paris Cité – CentraleSupélec</p>
-        <p>Hello! My name is Nelly Vanessa Padilla Bello and I am a postdoctoral researcher at the University of Paris Cité, in collaboration with the LMPS laboratory at CentraleSupélec, Paris, France.</p>
-        <p>I hold a Ph.D. in materials science with experience in multimodal and multiscale characterization of materials.</p>
-        <p>My current project focuses on the characterization of pathological tissues at different scales to understand the impact of disease on the physicochemistry and microstructure of tissues. The goal is to adapt laboratory techniques to clinical applications and ultimately support dentists in improving diagnosis and treatment decisions.</p>
-        <p>I also teach practical courses (TP) in microstructure characterization, with a focus on bone microstructure and mechanics, and supervise student projects across various subjects.</p>
-        <div class="about-tags">
-          <span class="tag">material characterization</span>
-          <span class="tag">multi-scale imaging</span>
-          <span class="tag">microstructure</span>
-          <span class="tag">quantitative imaging</span>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About me</p>
+      <div class="about-grid">
+        <div class="about-photo-placeholder">
+          <img src="images_/photo.jpg" alt="Nelly Vanessa Padilla Bello" />
+        </div>
+        <div class="about-text">
+          <h3>Nelly Vanessa Padilla Bello</h3>
+          <p class="role">Postdoctoral Researcher · Department of Dentistry · University Paris Cité – CentraleSupélec</p>
+          <p>Hello! My name is Nelly Vanessa Padilla Bello and I am a postdoctoral researcher at the University of Paris Cité, in collaboration with the LMPS laboratory at CentraleSupélec, Paris, France.</p>
+          <p>I hold a Ph.D. in materials science with experience in multimodal and multiscale characterization of materials.</p>
+          <p>My current project focuses on the characterization of pathological tissues at different scales to understand the impact of disease on the physicochemistry and microstructure of tissues. The goal is to adapt laboratory techniques to clinical applications and ultimately support dentists in improving diagnosis and treatment decisions.</p>
+          <p>I also teach practical courses (TP) in microstructure characterization, with a focus on bone microstructure and mechanics, and supervise student projects across various subjects.</p>
+          <div class="about-tags">
+            <span class="tag">material characterization</span>
+            <span class="tag">multi-scale imaging</span>
+            <span class="tag">microstructure</span>
+            <span class="tag">quantitative imaging</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- PROJECTS -->
   <section id="projects">
@@ -671,31 +819,24 @@
       <p class="section-intro">A selection of ongoing and completed research projects. Click to learn more about each one.</p>
 
       <div class="project-grid">
-      
-      <!-- PROJECT 1 -->
-      <div class="project-card">
-        <div class="project-img-placeholder">
-          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/>
-          </svg>
-          Replace with your image
-        </div>
-      
-        <div class="project-body">
-          <h3>Towards a quantitative diagnosis of MIH</h3>
-      
-          <p>
-            Combining Raman spectroscopy and Optical Coherence Tomography to support MIH diagnosis
-          </p>
-      
-          <div class="project-meta">
-            <span>2025 – present</span>
-      
-            <a href="mih-project.html">Read more →</a>
+
+        <!-- PROJECT 1 -->
+        <div class="project-card">
+          <div class="project-img-placeholder">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/>
+            </svg>
+            Replace with your image
+          </div>
+          <div class="project-body">
+            <h3>Towards a quantitative diagnosis of MIH</h3>
+            <p>Combining Raman spectroscopy and Optical Coherence Tomography to support MIH diagnosis</p>
+            <div class="project-meta">
+              <span>2025 – present</span>
+              <a href="mih-project.html">Read more →</a>
+            </div>
           </div>
         </div>
-      </div>
 
         <!-- PROJECT 2 -->
         <div class="project-card">
@@ -704,11 +845,9 @@
             Replace with your image
           </div>
           <div class="project-body">
-              <h3>Understanding How Microstructure Influences Composite Material Properties</h3>
-              <p>
-              Combining multi-scale imaging and material characterization techniques to establish links between microstructure, barrier performance, and adhesion in sustainable composite materials.
-              </p>
-              <div class="project-meta">
+            <h3>Understanding How Microstructure Influences Composite Material Properties</h3>
+            <p>Combining multi-scale imaging and material characterization techniques to establish links between microstructure, barrier performance, and adhesion in sustainable composite materials.</p>
+            <div class="project-meta">
               <span>2020 – 2024</span>
               <a href="#">Read more →</a>
             </div>
@@ -723,14 +862,15 @@
           </div>
           <div class="project-body">
             <h3>From Microstructure to Contact Mechanics in Bio-Cemented Materials</h3>
-            <p>Studying microstructure–property relationships in bio-cemented soils by linking grain-scale contact geometry to tensile and shear stiffness using Abaqus simulations. </p>
+            <p>Studying microstructure–property relationships in bio-cemented soils by linking grain-scale contact geometry to tensile and shear stiffness using Abaqus simulations.</p>
             <div class="project-meta">
               <span>feb 2020 – aug 2020</span>
               <a href="#">Read more →</a>
             </div>
           </div>
         </div>
-   <!-- PROJECT 4 -->
+
+        <!-- PROJECT 4 -->
         <div class="project-card">
           <div class="project-img-placeholder">
             <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
@@ -746,7 +886,6 @@
           </div>
         </div>
 
-  </section>
       </div>
     </div>
   </section>
@@ -764,7 +903,7 @@
           <div class="paper-number">01</div>
           <div>
             <p class="paper-title">Influence of basis weight and microfibril dimensions of microfibrillated cellulose (MFC) films on the microstructure, adhesion, and barrier properties of wet-laminated paper materials.</p>
-            <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F. · Rolland du Roscoat S. · Geindreau C. <em>Packaging Technology and Science Journal </em>, 2026</p>
+            <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F. · Rolland du Roscoat S. · Geindreau C. <em>Packaging Technology and Science Journal</em>, 2026</p>
             <p class="paper-abstract">Investigated how MFC film basis weight and microfibril size affect the microstructure, adhesion, and barrier performance of cellulose-based multilayers using multimodal 3D characterization. Higher basis weight films made of finer microfibrils formed denser structures with improved barrier properties.</p>
             <div class="paper-links">
               <span class="paper-badge">Submitted</span>
@@ -784,32 +923,168 @@
           </div>
         </div>
 
-      <div class="paper-item">
-        <div class="paper-number">03</div>
-        <div>
-          <p class="paper-title">Multiscale characterisation of cellulose nanofibril networks using three 3D imaging methods</p>
-          <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F · Douillard T. · Geindreau C. · Rolland du Roscoat S. <em>Journal of Microscopy</em>, 2025</p>
-          <p class="paper-abstract">This work investigates the 3D microstructure of cellulose-based bilayer materials for sustainable food packaging using a multiscale imaging approach combining synchrotron X-ray micro-/nanotomography and FIB-SEM tomography. The study reveals that MFC films have a dense, non-connected pore structure and shows that films made with finer microfibrils exhibit lower porosity, a more homogeneous microstructure, and greater contact area with the paper, contributing to improved barrier properties.</p>
-          <div class="paper-links">
-            <a href=" https://doi.org/10.1111/jmi.70046" target="_blank">DOI ↗</a>
-            <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
+        <div class="paper-item">
+          <div class="paper-number">03</div>
+          <div>
+            <p class="paper-title">Multiscale characterisation of cellulose nanofibril networks using three 3D imaging methods</p>
+            <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F · Douillard T. · Geindreau C. · Rolland du Roscoat S. <em>Journal of Microscopy</em>, 2025</p>
+            <p class="paper-abstract">This work investigates the 3D microstructure of cellulose-based bilayer materials for sustainable food packaging using a multiscale imaging approach combining synchrotron X-ray micro-/nanotomography and FIB-SEM tomography. The study reveals that MFC films have a dense, non-connected pore structure and shows that films made with finer microfibrils exhibit lower porosity, a more homogeneous microstructure, and greater contact area with the paper, contributing to improved barrier properties.</p>
+            <div class="paper-links">
+              <a href="https://doi.org/10.1111/jmi.70046" target="_blank">DOI ↗</a>
+              <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
+            </div>
           </div>
         </div>
-      </div>
 
-        
-      <div class="paper-item">
-        <div class="paper-number">04</div>
-        <div>
-          <p class="paper-title">Uncertainty in the determination of the volumetric block proportion of BIMrocks/ BIMsoils from one-dimensional information</p>
-          <p class="paper-authors">Ramos-Cañón A. F. · Castro-Malaver L. C · PADILLA-BELLO N.V · Vega-Posada C. A. <em>Boletin de Geologia.</em>, 2020</p>
-          <p class="paper-abstract">This work investigates the uncertainty in estimating the Proportion of Volumetric Blocks (PVB) in heterogeneous Block-in-Matrix (BIMrock/BIMsoil) materials from borehole data. A computational algorithm was developed to assess how borehole number and length, as well as block shape and orientation, affect PVB estimation. The results show that increasing the extent of subsurface investigations reduces epistemic uncertainty regardless of block geometry, but a minimum level of uncertainty remains due to the inherent randomness of the material's natural formation.</p>
-          <div class="paper-links">
-            <a href="https://www.redalyc.org/journal/3496/349665544005/html/" target="_blank">DOI ↗</a>
-            <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
+        <div class="paper-item">
+          <div class="paper-number">04</div>
+          <div>
+            <p class="paper-title">Uncertainty in the determination of the volumetric block proportion of BIMrocks/ BIMsoils from one-dimensional information</p>
+            <p class="paper-authors">Ramos-Cañón A. F. · Castro-Malaver L. C · PADILLA-BELLO N.V · Vega-Posada C. A. <em>Boletin de Geologia.</em>, 2020</p>
+            <p class="paper-abstract">This work investigates the uncertainty in estimating the Proportion of Volumetric Blocks (PVB) in heterogeneous Block-in-Matrix (BIMrock/BIMsoil) materials from borehole data. A computational algorithm was developed to assess how borehole number and length, as well as block shape and orientation, affect PVB estimation. The results show that increasing the extent of subsurface investigations reduces epistemic uncertainty regardless of block geometry, but a minimum level of uncertainty remains due to the inherent randomness of the material's natural formation.</p>
+            <div class="paper-links">
+              <a href="https://www.redalyc.org/journal/3496/349665544005/html/" target="_blank">DOI ↗</a>
+              <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
+            </div>
           </div>
         </div>
+
       </div>
+    </div>
+  </section>
+
+  <!-- CONFERENCES -->
+  <section id="conferences">
+    <div class="container">
+      <p class="section-label">Scientific dissemination</p>
+      <h2 class="section-title">Conferences & presentations</h2>
+      <p class="section-intro">Oral presentations, posters, and invited talks at national and international conferences.</p>
+
+      <div class="conf-list">
+
+        <!-- ============================================================
+             HOW TO ADD AN ENTRY:
+             1. Copy one <div class="conf-item"> block below
+             2. Fill in: year, title, venue/conference name, location
+             3. Set the badge type: oral / poster / invited / virtual
+        ================================================================ -->
+
+        <!-- ENTRY 1 — replace with your real conference -->
+        <div class="conf-item">
+          <div class="conf-year">2025</div>
+          <div>
+            <p class="conf-title">Title of your presentation or paper</p>
+            <p class="conf-venue">Conference Name · Society / Organisation</p>
+            <div class="conf-meta">
+              <span class="conf-badge oral">Oral</span>
+              <span class="conf-location">📍 City, Country</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 2 -->
+        <div class="conf-item">
+          <div class="conf-year">2024</div>
+          <div>
+            <p class="conf-title">Title of your poster or talk</p>
+            <p class="conf-venue">Conference Name · Society / Organisation</p>
+            <div class="conf-meta">
+              <span class="conf-badge poster">Poster</span>
+              <span class="conf-location">📍 City, Country</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 3 -->
+        <div class="conf-item">
+          <div class="conf-year">2023</div>
+          <div>
+            <p class="conf-title">Title of your presentation</p>
+            <p class="conf-venue">Conference Name · Society / Organisation</p>
+            <div class="conf-meta">
+              <span class="conf-badge invited">Invited talk</span>
+              <span class="conf-location">📍 City, Country</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 4 -->
+        <div class="conf-item">
+          <div class="conf-year">2022</div>
+          <div>
+            <p class="conf-title">Title of your presentation</p>
+            <p class="conf-venue">Conference Name · Society / Organisation</p>
+            <div class="conf-meta">
+              <span class="conf-badge poster">Poster</span>
+              <span class="conf-location">📍 City, Country</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="container">
+      <p class="section-label">Education & mentoring</p>
+      <h2 class="section-title">Teaching experience</h2>
+      <p class="section-intro">Practical courses, lectures, and student project supervision at university level.</p>
+
+      <div class="teaching-list">
+
+        <!-- ============================================================
+             HOW TO ADD AN ENTRY:
+             1. Copy one <div class="teaching-item"> block below
+             2. Fill in: role, course name, description, institution, period, hours/level
+             3. Change the emoji icon to suit the activity (🔬 🧪 📐 🏛️ 👩‍🎓)
+        ================================================================ -->
+
+        <!-- ENTRY 1 -->
+        <div class="teaching-item">
+          <div class="teaching-icon">🔬</div>
+          <div>
+            <p class="teaching-role">Teaching Assistant – Practical Course (TP)</p>
+            <p class="teaching-course">Microstructure Characterization · CentraleSupélec</p>
+            <p class="teaching-desc">Practical sessions on bone microstructure and mechanics, covering imaging techniques, sample preparation, and quantitative analysis. Students gain hands-on experience with microscopy and image processing tools.</p>
+            <div class="teaching-meta">
+              <span>📅 2024 – present</span>
+              <span>🏛️ CentraleSupélec, Paris</span>
+              <span>🎓 Master / Engineering level</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 2 -->
+        <div class="teaching-item">
+          <div class="teaching-icon">👩‍🎓</div>
+          <div>
+            <p class="teaching-role">Student Project Supervisor</p>
+            <p class="teaching-course">Research projects · [Institution name]</p>
+            <p class="teaching-desc">Supervision of student projects on topics related to materials characterization, imaging, and microstructure–property relationships. Replace this with details of the specific projects you supervised.</p>
+            <div class="teaching-meta">
+              <span>📅 [Year – Year]</span>
+              <span>🏛️ [Institution]</span>
+              <span>🎓 [Level]</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 3 — duplicate or remove as needed -->
+        <div class="teaching-item">
+          <div class="teaching-icon">📐</div>
+          <div>
+            <p class="teaching-role">Lecturer / Tutorial instructor</p>
+            <p class="teaching-course">Course name · [Institution name]</p>
+            <p class="teaching-desc">Brief description of the course and your contribution. You can mention the number of students, topics covered, or any materials you developed.</p>
+            <div class="teaching-meta">
+              <span>📅 [Year]</span>
+              <span>🏛️ [Institution]</span>
+              <span>🎓 [Level]</span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -824,7 +1099,6 @@
 
       <div class="gallery-grid">
 
-        <!-- To add a real image: replace the placeholder div with: <img class="gallery-thumb" src="your-image.jpg" alt="Description"> -->
         <div class="gallery-item">
           <div class="gallery-thumb-placeholder">
             <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
@@ -834,9 +1108,6 @@
         </div>
 
         <div class="gallery-item">
-          <!-- VIDEO: paste a YouTube embed here. Example:
-          <iframe width="100%" height="160" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-          -->
           <div class="gallery-thumb-placeholder">
             <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
             Your video here
@@ -872,13 +1143,6 @@
       <p class="section-intro">Short posts and thoughts I share on LinkedIn — research updates, behind-the-scenes, and ideas.</p>
 
       <div class="blog-grid">
-
-        <!-- ============================================================
-             HOW TO ADD A NEW POST:
-             1. Copy one <div class="post-card">...</div> block below
-             2. Paste it at the top of this list (newest post first)
-             3. Fill in: initials, your name, date, title, text, tags, LinkedIn URL
-        ================================================================ -->
 
         <!-- POST 1 -->
         <div class="post-card">
@@ -953,9 +1217,9 @@ This is just a placeholder — replace it with your real content. Add as many po
   <footer>
     <p class="footer-name">Nelly Vanessa Padilla Bello</p>
     <p>Department of Dentistry · University Paris Cité</p>
-    <p><a href="nelly-vanessa.padilla-bello@u-pariscite.fr">your.email@university.edu</a></p>
+    <p><a href="mailto:nelly-vanessa.padilla-bello@u-pariscite.fr">nelly-vanessa.padilla-bello@u-pariscite.fr</a></p>
     <br>
-    <p style="font-size:0.78rem; color:#666">© 2024 · Built with GitHub Pages</p>
+    <p style="font-size:0.78rem; color:#666">© 2025 · Built with GitHub Pages</p>
   </footer>
 
 </body>
