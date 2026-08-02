@@ -1,1275 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Research Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ink: #0f1f28;
-      --ink-muted: #3a6a58;
-      --ink-faint: #7aaa90;
-      --bg: #f2faf6;
-      --surface: #fff;
-      --accent: #1a3a4a;
-      --accent-light: #c8ead8;
-      --border: #c8ead8;
-      --serif: 'Lora', Georgia, serif;
-      --sans: 'DM Sans', system-ui, sans-serif;
-    }
-
-    .about-photo-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.7;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(242, 250, 246, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-    }
-
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--ink-muted);
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    /* HERO */
-    .hero {
-      padding: 6rem 2rem 4rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .hero-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--ink-muted);
-      max-width: 560px;
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #3aaa72;
-      color: #fff;
-      text-decoration: none;
-      padding: 0.75rem 1.75rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-
-    .hero-cta:hover { background: #2d8a5a; }
-
-    /* SECTION SHARED */
-    section {
-      padding: 5rem 2rem;
-    }
-
-    .container {
-      max-width: 940px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: var(--ink);
-    }
-
-    .section-intro {
-      font-size: 1rem;
-      color: var(--ink-muted);
-      max-width: 560px;
-      margin-bottom: 3rem;
-    }
-
-    /* ABOUT */
-    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 3.5rem;
-      align-items: start;
-    }
-
-    .about-photo {
-      width: 220px;
-      height: 280px;
-      object-fit: cover;
-      border-radius: 6px;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-faint);
-      font-size: 0.85rem;
-      border: 1px solid var(--border);
-    }
-
-    .about-photo-placeholder {
-      width: 220px;
-      height: 280px;
-      border-radius: 6px;
-      background: var(--accent-light);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.8rem;
-      border: 2px dashed #b8c9e0;
-      gap: 0.5rem;
-    }
-
-    .about-photo-placeholder svg { opacity: 0.5; }
-
-    .about-text h3 {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .about-text .role {
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-text p {
-      color: var(--ink-muted);
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .about-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .tag {
-      background: var(--accent-light);
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 500;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-    }
-
-    /* PROJECTS */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(43,76,126,0.1);
-    }
-
-    .project-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-faint);
-      font-size: 0.8rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .project-img-placeholder {
-      width: 100%;
-      height: 180px;
-      background: linear-gradient(135deg, #e8eef6 0%, #d0ddf0 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.78rem;
-      gap: 0.4rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-img-placeholder img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .project-body {
-      padding: 1.25rem 1.5rem;
-    }
-
-    .project-body h3 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-body p {
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-      line-height: 1.6;
-    }
-
-    .project-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-    }
-
-    .project-meta a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* PAPERS */
-    #papers { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .paper-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .paper-item {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 1.25rem;
-      align-items: start;
-      padding: 1.5rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }
-
-    .paper-item:hover { border-color: #b8c9e0; }
-
-    .paper-number {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--accent);
-      opacity: 0.4;
-      line-height: 1;
-      padding-top: 3px;
-    }
-
-    .paper-title {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-      color: var(--ink);
-    }
-
-    .paper-authors {
-      font-size: 0.85rem;
-      color: var(--ink-faint);
-      margin-bottom: 0.6rem;
-      font-style: italic;
-    }
-
-    .paper-abstract {
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-      line-height: 1.65;
-      margin-bottom: 0.75rem;
-    }
-
-    .paper-links {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .paper-links a {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .paper-badge {
-      font-size: 0.7rem;
-      font-weight: 500;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      background: #c8ead8;
-      color: #1a3a4a;
-    }
-
-    /* ── CONFERENCES ─────────────────────────────────────────── */
-    #conferences { background: var(--bg); }
-
-    .conf-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .conf-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1.25rem;
-      align-items: start;
-      padding: 1.25rem 1.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }
-
-    .conf-item:hover { border-color: #b8c9e0; }
-
-    .conf-year {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--accent);
-      opacity: 0.55;
-      padding-top: 3px;
-      line-height: 1.3;
-    }
-
-    .conf-title {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 0.25rem;
-      line-height: 1.45;
-    }
-
-    .conf-venue {
-      font-size: 0.85rem;
-      color: var(--ink-muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .conf-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .conf-badge {
-      font-size: 0.7rem;
-      font-weight: 500;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-    }
-    .conf-badge.lang     { background: #f0f4f8; color: #334155; }
-    .conf-badge.oral      { background: #dbeafe; color: #1e40af; }
-    .conf-badge.poster    { background: #ede9fe; color: #5b21b6; }
-    .conf-badge.invited   { background: #fef3c7; color: #92400e; }
-    .conf-badge.virtual   { background: #f0fdf4; color: #166534; }
-
-    .conf-location {
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-    }
-
-    /* ── TEACHING ────────────────────────────────────────────── */
-    #teaching { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .teaching-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .teaching-item {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 1.25rem;
-      align-items: start;
-      padding: 1.5rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }
-
-    .teaching-item:hover { border-color: #b8c9e0; }
-
-    .teaching-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .teaching-role {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.15rem;
-      font-family: var(--serif);
-    }
-
-    .teaching-course {
-      font-size: 0.88rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.35rem;
-    }
-
-    .teaching-desc {
-      font-size: 0.88rem;
-      color: var(--ink-muted);
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
-    }
-
-    .teaching-meta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-    }
-
-    .teaching-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    /* MEDIA GALLERY */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-item {
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    .gallery-thumb {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      display: block;
-      background: var(--accent-light);
-    }
-
-    .gallery-thumb-placeholder {
-      width: 100%;
-      height: 160px;
-      background: linear-gradient(135deg, #e8eef6 0%, #d0ddf0 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.78rem;
-      gap: 0.4rem;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .gallery-thumb-placeholder img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .gallery-caption {
-      padding: 0.75rem 1rem;
-      font-size: 0.83rem;
-      color: var(--ink-muted);
-    }
-
-    /* CONTACT / FOOTER */
-    footer {
-      background: #0f1f28;
-      color: #c8c8c0;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    footer .footer-name {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    footer p { font-size: 0.875rem; margin-bottom: 0.3rem; }
-
-    footer a { color: #8aadd4; text-decoration: none; }
-
-    .edit-hint {
-      background: #fffbea;
-      border: 1px dashed #f0c040;
-      border-radius: 4px;
-      padding: 0.4rem 0.75rem;
-      font-size: 0.78rem;
-      color: #856404;
-      margin-top: 0.75rem;
-      display: inline-block;
-    }
-
-    /* BLOG */
-    #blog { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .blog-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
-
-    .post-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.75rem 2rem;
-      transition: border-color 0.2s;
-    }
-
-    .post-card:hover { border-color: #b8c9e0; }
-
-    .post-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .post-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #1a3a4a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .post-meta-info { flex: 1; }
-
-    .post-author {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.2;
-    }
-
-    .post-date {
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-    }
-
-    .post-linkedin-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.72rem;
-      color: #0a66c2;
-      font-weight: 500;
-      background: #e8f0fb;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-    }
-
-    .post-title {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.6rem;
-      line-height: 1.4;
-    }
-
-    .post-body {
-      font-size: 0.95rem;
-      color: var(--ink-muted);
-      line-height: 1.75;
-      white-space: pre-line;
-    }
-
-    .post-body.collapsed {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .post-toggle {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 0.4rem 0;
-      margin-top: 0.4rem;
-      font-family: var(--sans);
-    }
-
-    .post-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1.25rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .post-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-
-    .post-tag {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-    }
-
-    .post-link {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #0a66c2;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .post-link:hover { text-decoration: underline; }
-
-    @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-photo-placeholder { width: 100%; height: 200px; }
-      nav { padding: 0 1rem; }
-      .nav-links { gap: 1rem; }
-      section { padding: 3.5rem 1.25rem; }
-      .conf-item { grid-template-columns: 56px 1fr; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nelly Vanessa Padilla Bello — Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f1f28; --ink-muted:#3a6a58; --ink-faint:#7aaa90;
+    --bg:#f6faf8; --surface:#fff; --accent:#1a3a4a; --accent-light:#dff0e6; --border:#e0ece6;
+    --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px;}
+  nav{position:sticky;top:0;z-index:10;background:rgba(246,250,248,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:48px;}
+  .nav-logo{font-family:var(--serif);font-size:.95rem;color:var(--accent);text-decoration:none;font-weight:600;}
+  .nav-links{display:flex;gap:1.1rem;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--ink-muted);font-size:.8rem;font-weight:500;}
+  .nav-links a:hover{color:var(--accent);}
+  .hero{padding:2.8rem 1.5rem 2rem;max-width:760px;margin:0 auto;}
+  .hero-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.6rem;}
+  .hero h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.3rem);font-weight:600;line-height:1.2;margin-bottom:.8rem;}
+  .hero-desc{font-size:.95rem;color:var(--ink-muted);max-width:520px;}
+  section{padding:2.2rem 1.5rem;}
+  .container{max-width:760px;margin:0 auto;}
+  .section-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin-bottom:1rem;color:var(--ink);border-bottom:2px solid var(--accent-light);padding-bottom:.4rem;}
+  #about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .about-grid{display:grid;grid-template-columns:120px 1fr;gap:1.5rem;align-items:start;}
+  .about-photo{width:120px;height:120px;border-radius:50%;object-fit:cover;background:var(--accent-light);}
+  .about-text .role{color:var(--accent);font-size:.82rem;font-weight:500;margin-bottom:.6rem;}
+  .about-text p{color:var(--ink-muted);margin-bottom:.6rem;font-size:.9rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;}
+  .tag{background:var(--accent-light);color:var(--accent);font-size:.72rem;font-weight:500;padding:.2rem .55rem;border-radius:999px;}
+  .proj-list{display:flex;flex-direction:column;gap:.9rem;}
+  .proj-item{display:grid;grid-template-columns:110px 1fr;gap:1rem;padding:.8rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;align-items:start;}
+  .proj-thumb{width:110px;height:80px;object-fit:cover;border-radius:4px;background:var(--accent-light);}
+  .proj-item h4{font-family:var(--serif);font-size:.95rem;margin-bottom:.2rem;}
+  .proj-item h4 a{color:var(--ink);text-decoration:none;}
+  .proj-item h4 a:hover{color:var(--accent);text-decoration:underline;}
+  .proj-item p{font-size:.83rem;color:var(--ink-muted);}
+  .proj-item .yr{font-size:.72rem;color:var(--ink-faint);}
+  @media(max-width:500px){.proj-item{grid-template-columns:1fr;}.proj-thumb{width:100%;height:120px;}}
+  #papers{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .paper-item{padding:.9rem 0;border-bottom:1px solid var(--border);}
+  .paper-item:last-child{border-bottom:none;}
+  .paper-title{font-size:.9rem;font-weight:600;margin-bottom:.15rem;}
+  .paper-authors{font-size:.78rem;color:var(--ink-faint);font-style:italic;margin-bottom:.3rem;}
+  .paper-abstract{font-size:.83rem;color:var(--ink-muted);margin-bottom:.35rem;}
+  .paper-badge{font-size:.68rem;font-weight:500;padding:.15rem .5rem;border-radius:999px;background:var(--accent-light);color:var(--accent);}
+  .exp-item{display:grid;grid-template-columns:70px 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);}
+  .exp-item:last-child{border-bottom:none;}
+  .exp-year{font-size:.78rem;color:var(--ink-faint);padding-top:.1rem;}
+  .exp-title{font-size:.88rem;font-weight:600;}
+  .exp-venue{font-size:.8rem;color:var(--ink-muted);}
+  .exp-badge{font-size:.68rem;font-weight:500;padding:.12rem .5rem;border-radius:999px;background:#eef3f0;color:var(--ink-muted);display:inline-block;margin-top:.25rem;}
+  footer{background:var(--accent);color:#dfe8e4;padding:1.8rem 1.5rem;text-align:center;font-size:.82rem;}
+  footer a{color:#a9d6c4;}
+  @media(max-width:600px){.about-grid{grid-template-columns:1fr;}.about-photo{width:90px;height:90px;}}
+</style>
 </head>
 <body>
+<nav>
+  <a class="nav-logo" href="#">N. V. Padilla Bello</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#papers">Papers</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="notes.html">Notes</a></li>
+  </ul>
+</nav>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">Dr. Nelly Vanessa Padilla Bello</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#papers">Papers</a></li>
-      <li><a href="#conferences">Conferences</a></li>
-      <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#media">Media</a></li>
-      <li><a href="#blog">Blog</a></li>
-    </ul>
-  </nav>
+<header class="hero">
+  <p class="hero-label">Materials Science &amp; Imaging Research</p>
+  <h1>Exploring materials from the inside out through imaging</h1>
+  <p class="hero-desc">I use advanced imaging and analysis to understand how material microstructure controls properties and performance.</p>
+</header>
 
-  <!-- HERO -->
-  <header class="hero">
-    <p class="hero-label">Materials Science & Imaging Research</p>
-    <h1>Exploring <em>materials from the inside out</em><br>through imaging</h1>
-    <p class="hero-desc">
-     I use advanced imaging and analysis to understand how material microstructure controls properties and performance.
-    </p>
-    <a href="#projects" class="hero-cta">View my work →</a>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <p class="section-label">About me</p>
-      <div class="about-grid">
-        <div class="about-photo-placeholder">
-          <img src="images_/photo.jpg" alt="Nelly Vanessa Padilla Bello" />
-        </div>
-        <div class="about-text">
-          <h3>Nelly Vanessa Padilla Bello</h3>
-          <p class="role">Postdoctoral Researcher · Department of Dentistry · University Paris Cité – CentraleSupélec</p>
-          <p>Hello! My name is Nelly Vanessa Padilla Bello and I am a postdoctoral researcher at the University of Paris Cité, in collaboration with the LMPS laboratory at CentraleSupélec, Paris, France.</p>
-          <p>I hold a Ph.D. in materials science with experience in multimodal and multiscale characterization of materials.</p>
-          <p>My current project focuses on the characterization of pathological tissues at different scales to understand the impact of disease on the physicochemistry and microstructure of tissues. The goal is to adapt laboratory techniques to clinical applications and ultimately support dentists in improving diagnosis and treatment decisions.</p>
-          <p>I also teach practical courses (TP) in microstructure characterization, with a focus on bone microstructure and mechanics, and supervise student projects across various subjects.</p>
-          <div class="about-tags">
-            <span class="tag">material characterization</span>
-            <span class="tag">multi-scale imaging</span>
-            <span class="tag">microstructure</span>
-            <span class="tag">quantitative imaging</span>
-          </div>
+<section id="about">
+  <div class="container">
+    <p class="section-title">About</p>
+    <div class="about-grid">
+      <img class="about-photo" src="images_/photo.jpg" alt="Nelly Vanessa Padilla Bello" />
+      <div class="about-text">
+        <p class="role">Postdoctoral Researcher · Dept. of Dentistry · Université Paris Cité – CentraleSupélec</p>
+        <p>Postdoctoral researcher at Université Paris Cité, in collaboration with the LMPS laboratory at CentraleSupélec, Paris. Ph.D. in materials science with experience in multimodal and multiscale characterization of materials.</p>
+        <p>Current project: characterizing pathological tissues at different scales to understand the impact of disease on tissue physicochemistry and microstructure — adapting lab techniques to clinical applications to support dental diagnosis and treatment decisions.</p>
+        <p>Also teaches practical courses in microstructure characterization (bone microstructure and mechanics) and supervises student projects.</p>
+        <div class="tags">
+          <span class="tag">material characterization</span>
+          <span class="tag">multi-scale imaging</span>
+          <span class="tag">microstructure</span>
+          <span class="tag">quantitative imaging</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <p class="section-label">Research projects</p>
-      <h2 class="section-title">Current & past work</h2>
-      <p class="section-intro">A selection of ongoing and completed research projects. Click to learn more about each one.</p>
-
-      <div class="project-grid">
-
-        <!-- PROJECT 1 -->
-        <div class="project-card">
-          <div class="project-img-placeholder">
-            <img src="images_/MIH_scan.jpg" alt="MIH" />
-          </div>
-          <div class="project-body">
-            <h3>Towards a quantitative diagnosis of MIH</h3>
-            <p>Combining Raman spectroscopy and Optical Coherence Tomography to support MIH diagnosis</p>
-            <div class="project-meta">
-              <span>2025 – present</span>
-              <a href="mih-project.html">Read more →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 2 -->
-        <div class="project-card">
-          <div class="project-img-placeholder">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
-            Replace with your image
-          </div>
-          <div class="project-body">
-            <h3>Understanding How Microstructure Influences Composite Material Properties</h3>
-            <p>Combining multi-scale imaging and material characterization techniques to establish links between microstructure, barrier performance, and adhesion in sustainable composite materials.</p>
-            <div class="project-meta">
-              <span>2020 – 2024</span>
-              <a href="#">Read more →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 3 -->
-        <div class="project-card">
-          <div class="project-img-placeholder">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
-            Replace with your image
-          </div>
-          <div class="project-body">
-            <h3>From Microstructure to Contact Mechanics in Bio-Cemented Materials</h3>
-            <p>Studying microstructure–property relationships in bio-cemented soils by linking grain-scale contact geometry to tensile and shear stiffness using Abaqus simulations.</p>
-            <div class="project-meta">
-              <span>feb 2020 – aug 2020</span>
-              <a href="#">Read more →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 4 -->
-        <div class="project-card">
-          <div class="project-img-placeholder">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
-            Replace with your image
-          </div>
-          <div class="project-body">
-            <h3> Quantifying Uncertainty in the Characterization of Bimrocks  </h3>
-            <p>Evaluating the accuracy of conventional characterization methods using numerical simulations</p>
-            <div class="project-meta">
-              <span>feb 2020 – aug 2020</span>
-              <a href="#">Read more →</a>
-            </div>
-          </div>
-        </div>
-
+<section id="projects">
+  <div class="container">
+    <p class="section-title">Research Projects</p>
+    <div class="proj-list">
+      <div class="proj-item">
+        <img class="proj-thumb" src="images_/MIH_scan.jpg" alt="MIH project" />
+        <div><span class="yr">2025 – present</span><h4><a href="project-mih.html">Towards a quantitative diagnosis of MIH</a></h4><p>Combining Raman spectroscopy and Optical Coherence Tomography to support MIH diagnosis.</p></div>
+      </div>
+      <div class="proj-item">
+        <img class="proj-thumb" src="images_/composite_material.jpg" alt="Composite materials project" />
+        <div><span class="yr">2020 – 2024</span><h4><a href="project-composite.html">Microstructure &amp; Composite Material Properties</a></h4><p>Multi-scale imaging linking microstructure, barrier performance, and adhesion in sustainable composite materials.</p></div>
+      </div>
+      <div class="proj-item">
+        <img class="proj-thumb" src="images_/biocemented.jpg" alt="Bio-cemented materials project" />
+        <div><span class="yr">Feb – Aug 2020</span><h4><a href="project-biocemented.html">From Microstructure to Contact Mechanics in Bio-Cemented Materials</a></h4><p>Linking grain-scale contact geometry to tensile and shear stiffness using Abaqus simulations.</p></div>
+      </div>
+      <div class="proj-item">
+        <img class="proj-thumb" src="images_/bimrocks.jpg" alt="Bimrocks project" />
+        <div><span class="yr">Feb – Aug 2020</span><h4><a href="project-bimrocks.html">Quantifying Uncertainty in the Characterization of Bimrocks</a></h4><p>Evaluating conventional characterization methods using numerical simulations.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PAPERS -->
-  <section id="papers">
-    <div class="container">
-      <p class="section-label">Publications</p>
-      <h2 class="section-title">Research papers</h2>
-      <p class="section-intro">Peer-reviewed articles, preprints, and conference papers.</p>
-
-      <div class="paper-list">
-
-        <div class="paper-item">
-          <div class="paper-number">01</div>
-          <div>
-            <p class="paper-title">Influence of basis weight and microfibril dimensions of microfibrillated cellulose (MFC) films on the microstructure, adhesion, and barrier properties of wet-laminated paper materials.</p>
-            <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F. · Rolland du Roscoat S. · Geindreau C. <em>Packaging Technology and Science Journal</em>, 2026</p>
-            <p class="paper-abstract">Investigated how MFC film basis weight and microfibril size affect the microstructure, adhesion, and barrier performance of cellulose-based multilayers using multimodal 3D characterization. Higher basis weight films made of finer microfibrils formed denser structures with improved barrier properties.</p>
-            <div class="paper-links">
-              <span class="paper-badge">Submitted</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-item">
-          <div class="paper-number">02</div>
-          <div>
-            <p class="paper-title">Influence of the microfibrils size on the adhesion properties of MFC films wet laminated onto paper and paperboard</p>
-            <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F. · Geindreau C. · Rolland du Roscoat S. <em>Cellulose Journal</em>, 2026</p>
-            <p class="paper-abstract">Studied the microstructure–adhesion relationship in MFC-coated cellulose materials using multimodal characterization.</p>
-            <div class="paper-links">
-              <span class="paper-badge">Submitted</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-item">
-          <div class="paper-number">03</div>
-          <div>
-            <p class="paper-title">Multiscale characterisation of cellulose nanofibril networks using three 3D imaging methods</p>
-            <p class="paper-authors">PADILLA BELLO N. V. · Rota M. · Curmi H. · Rol F · Douillard T. · Geindreau C. · Rolland du Roscoat S. <em>Journal of Microscopy</em>, 2025</p>
-            <p class="paper-abstract">This work investigates the 3D microstructure of cellulose-based bilayer materials for sustainable food packaging using a multiscale imaging approach combining synchrotron X-ray micro-/nanotomography and FIB-SEM tomography. The study reveals that MFC films have a dense, non-connected pore structure and shows that films made with finer microfibrils exhibit lower porosity, a more homogeneous microstructure, and greater contact area with the paper, contributing to improved barrier properties.</p>
-            <div class="paper-links">
-              <a href="https://doi.org/10.1111/jmi.70046" target="_blank">DOI ↗</a>
-              <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-item">
-          <div class="paper-number">04</div>
-          <div>
-            <p class="paper-title">Uncertainty in the determination of the volumetric block proportion of BIMrocks/ BIMsoils from one-dimensional information</p>
-            <p class="paper-authors">Ramos-Cañón A. F. · Castro-Malaver L. C · PADILLA-BELLO N.V · Vega-Posada C. A. <em>Boletin de Geologia.</em>, 2020</p>
-            <p class="paper-abstract">This work investigates the uncertainty in estimating the Proportion of Volumetric Blocks (PVB) in heterogeneous Block-in-Matrix (BIMrock/BIMsoil) materials from borehole data. A computational algorithm was developed to assess how borehole number and length, as well as block shape and orientation, affect PVB estimation. The results show that increasing the extent of subsurface investigations reduces epistemic uncertainty regardless of block geometry, but a minimum level of uncertainty remains due to the inherent randomness of the material's natural formation.</p>
-            <div class="paper-links">
-              <a href="https://www.redalyc.org/journal/3496/349665544005/html/" target="_blank">DOI ↗</a>
-              <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+<section id="papers">
+  <div class="container">
+    <p class="section-title">Publications</p>
+    <div class="paper-item">
+      <p class="paper-title">Influence of basis weight and microfibril dimensions of MFC films on microstructure, adhesion, and barrier properties of wet-laminated paper materials</p>
+      <p class="paper-authors">Padilla Bello N.V. · Rota M. · Curmi H. · Rol F. · Rolland du Roscoat S. · Geindreau C. — <em>Packaging Technology and Science</em>, 2026</p>
+      <span class="paper-badge">Submitted</span>
     </div>
-  </section>
-
-  <!-- CONFERENCES -->
-  <section id="conferences">
-    <div class="container">
-      <p class="section-label">Scientific dissemination</p>
-      <h2 class="section-title">Conferences & presentations</h2>
-      <p class="section-intro">Oral presentations, posters, and invited talks at national and international conferences.</p>
-
-      <div class="conf-list">
-
-        <!-- ============================================================
-             HOW TO ADD AN ENTRY:
-             1. Copy one <div class="conf-item"> block below
-             2. Fill in: year, title, venue/conference name, location
-             3. Set the badge type: oral / poster / invited / virtual
-        ================================================================ -->
-
-        <!-- ENTRY 4 -->
-        <div class="conf-item">
-          <div class="conf-year">2026</div>
-          <div>
-            <p class="conf-title">Raman + OCT Imaging: Towards a quantitative diagnosis of mih</p>
-            <p class="conf-venue">LMPS PHD day · Laboratory LMPS / CentraleSupélec</p>
-            <div class="conf-meta">
-              <span class="conf-badge poster">Poster</span>
-              <span class="conf-badge lang">🌐 English/French </span>
-              <span class="conf-location">📍 Saclay, France</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- ENTRY 3 -->
-        <div class="conf-item">
-          <div class="conf-year">2026</div>
-          <div>
-            <p class="conf-title">Influence of microfibril size on the adhesion of a wet-laminated cellulose microfibril film to paper and paperboard</p>
-            <p class="conf-venue">jst-interfaces : Interfaces / interphases dans les matériaux composites et les assemblages collés · AMAC / Association pour les Matériaux Composites </p>
-            <div class="conf-meta">
-              <span class="conf-badge oral">Oral</span>
-              <span class="conf-badge lang">🌐 French</span>
-              <span class="conf-location">📍 Paris, France</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ENTRY 2 -->
-        <div class="conf-item">
-          <div class="conf-year">2023</div>
-          <div>
-            <p class="conf-title">3D observation of (nano)-cellulose fibers network by multiscale imaging techniques:from nanometer to millimeter scale.</p>
-            <p class="conf-venue">Interpore · International Sociaty of Porous Media</p>
-            <div class="conf-meta">
-              <span class="conf-badge poster">Oral</span>
-              <span class="conf-badge lang">🌐 English</span>
-              <span class="conf-location">📍 Edinburgh, Scotland</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- ENTRY 1 -->
-        <div class="conf-item">
-          <div class="conf-year">2023</div>
-          <div>
-            <p class="conf-title">Advanced characterization of novel multilayer cellulose based material for food packaging</p>
-            <p class="conf-venue">Interpore · International Sociaty of Porous Media</p>
-            <div class="conf-meta">
-              <span class="conf-badge poster">Poster</span>
-              <span class="conf-badge lang">🌐 English</span>
-              <span class="conf-location">📍 Edinburgh, Scotland</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <div class="paper-item">
+      <p class="paper-title">Influence of microfibril size on the adhesion properties of MFC films wet laminated onto paper and paperboard</p>
+      <p class="paper-authors">Padilla Bello N.V. · Rota M. · Curmi H. · Rol F. · Geindreau C. · Rolland du Roscoat S. — <em>Cellulose</em>, 2026</p>
+      <span class="paper-badge">Submitted</span>
     </div>
-  </section>
-
-  <!-- TEACHING -->
-  <section id="teaching">
-    <div class="container">
-      <p class="section-label">Education & mentoring</p>
-      <h2 class="section-title">Teaching experience</h2>
-      <p class="section-intro">Practical courses, lectures, and student project supervision at university level.</p>
-
-      <div class="teaching-list">
-
-        <!-- ============================================================
-             HOW TO ADD AN ENTRY:
-             1. Copy one <div class="teaching-item"> block below
-             2. Fill in: role, course name, description, institution, period, hours/level
-             3. Change the emoji icon to suit the activity (🔬 🧪 📐 🏛️ 👩‍🎓)
-        ================================================================ -->
-
-        <!-- ENTRY 1 -->
-        <div class="teaching-item">
-          <div class="teaching-icon">🔬</div>
-          <div>
-            <p class="teaching-role">Teaching Assistant – Practical Course (TP)</p>
-            <p class="teaching-course">Microstructure Characterization · CentraleSupélec</p>
-            <p class="teaching-desc">Practical sessions on bone microstructure and mechanics, covering imaging techniques, sample preparation, and quantitative analysis. Students gain hands-on experience with microscopy and image processing tools.</p>
-            <div class="teaching-meta">
-              <span>📅 2025 – present</span>
-              <span>🏛️ CentraleSupélec, Saclay</span>
-              <span>🎓 Master / Engineering level</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ENTRY 2 -->
-        <div class="teaching-item">
-          <div class="teaching-icon">👩‍🎓</div>
-          <div>
-            <p class="teaching-role">Student Project Supervisor</p>
-            <p class="teaching-course">Engineering projects</p>
-            <p class="teaching-desc">Supervision of student on engineering projects</p>
-            <div class="teaching-meta">
-              <span>📅 [2026 – present]</span>
-              <span>🏛️ CentraleSupélec, Saclay</span>
-              <span>🎓 Engineering level</span>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
+    <div class="paper-item">
+      <p class="paper-title">Multiscale characterisation of cellulose nanofibril networks using three 3D imaging methods</p>
+      <p class="paper-authors">Padilla Bello N.V. · Rota M. · Curmi H. · Rol F. · Douillard T. · Geindreau C. · Rolland du Roscoat S. — <em>Journal of Microscopy</em>, 2025</p>
+      <a href="https://doi.org/10.1111/jmi.70046" target="_blank" style="font-size:.8rem;color:var(--accent);">DOI ↗</a>
+      <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
     </div>
-  </section>
-
-  <!-- MEDIA -->
-  <section id="media">
-    <div class="container">
-      <p class="section-label">Media</p>
-      <h2 class="section-title">Images & videos</h2>
-      <p class="section-intro">Figures, field photos, and video content from my research.</p>
-
-      <div class="gallery-grid">
-
-        <div class="gallery-item">
-          <div class="gallery-thumb-placeholder">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
-            Your image here
-          </div>
-          <p class="gallery-caption">Caption for this figure or photo</p>
-        </div>
-
-        <div class="gallery-item">
-          <div class="gallery-thumb-placeholder">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
-            Your video here
-          </div>
-          <p class="gallery-caption">Caption for this video</p>
-        </div>
-
-        <div class="gallery-item">
-          <div class="gallery-thumb-placeholder">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
-            Your image here
-          </div>
-          <p class="gallery-caption">Caption for this figure or photo</p>
-        </div>
-
-        <div class="gallery-item">
-          <div class="gallery-thumb-placeholder">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18"/></svg>
-            Your image here
-          </div>
-          <p class="gallery-caption">Caption for this figure or photo</p>
-        </div>
-
-      </div>
+    <div class="paper-item">
+      <p class="paper-title">Uncertainty in the determination of the volumetric block proportion of BIMrocks/BIMsoils from one-dimensional information</p>
+      <p class="paper-authors">Ramos-Cañón A.F. · Castro-Malaver L.C. · Padilla-Bello N.V. · Vega-Posada C.A. — <em>Boletín de Geología</em>, 2020</p>
+      <a href="https://www.redalyc.org/journal/3496/349665544005/html/" target="_blank" style="font-size:.8rem;color:var(--accent);">DOI ↗</a>
+      <span class="paper-badge" style="background:#fff4e0;color:#7a5000;">Published</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- BLOG -->
-  <section id="blog">
-    <div class="container">
-      <p class="section-label">Notes & reflections</p>
-      <h2 class="section-title">From LinkedIn</h2>
-      <p class="section-intro">Short posts and thoughts I share on LinkedIn — research updates, behind-the-scenes, and ideas.</p>
-
-      <div class="blog-grid">
-
-        <!-- POST 1 -->
-        <div class="post-card">
-          <div class="post-header">
-            <div class="post-avatar">NVPB</div>
-            <div class="post-meta-info">
-              <p class="post-author">Nelly Vanessa Padilla Bello</p>
-              <p class="post-date">June 2025</p>
-            </div>
-            <span class="post-linkedin-badge">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </span>
-          </div>
-          <p class="post-title">🔬 What is Porosity—and Why Does It Matter in Paper? 🧵</p>
-          <div class="post-body collapsed" id="post-1-body">
-            
-            When we zoom into a sheet of paper, we see more than just fibers.
-             We see spaces — tiny voids between fibers — and these voids are called pores.
-            
-            📌 Porosity refers to the volume of these empty spaces compared to the total volume of the material.
-            
-            Far from being just a random feature, porosity is a key player in how material performs, in this case paper:
-            
-            💧 It determines how much water or ink the paper can absorb
-            
-            💨 It influences how gases and vapors travel through it
-            
-            🧪 It even affects coating performance and printability
-            
-            Porosity is typically measured using:
-            Mercury intrusion porosimetry (for accessible pores)
-            Gas permeability tests
-            Imaging methods (like 3D X-ray tomography 🧠 — my personal favorite!)
-            
-            High porosity = more air = better absorbency but worse barrier properties.
-             Low porosity = tighter structure = better barriers, but maybe less flexibility.
-            Understanding porosity helps us design better materials—especially in sustainable packaging, where barrier performance is key. 🌍📦
-            
-            👉 In my next post, I'll explore how microstructure can be tailored to tune porosity and barrier properties.
-             Have you worked with porous materials before? How did you measure or control porosity?</div>
-          <button class="post-toggle" onclick="togglePost('post-1-body', this)">Read more ▾</button>
-          <div class="post-footer">
-            <div class="post-tags">
-              <span class="post-tag">#PorousMedia</span>
-              <span class="post-tag">#Research</span>
-            </div>
-            <a class="post-link" href="https://www.linkedin.com/feed/update/urn:li:activity:7325176072872902656/" target="_blank">View on LinkedIn ↗</a>
-          </div>
-        </div>
-
-        <!-- POST 2 -->
-        <div class="post-card">
-          <div class="post-header">
-            <div class="post-avatar">NVPB</div>
-            <div class="post-meta-info">
-              <p class="post-author">Nelly Vanessa Padilla Bello</p>
-              <p class="post-date">Jun 2026</p>
-            </div>
-            <span class="post-linkedin-badge">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </span>
-          </div>
-          <p class="post-title">When Even X-ray Nano-Tomography Isn't Enough… Meet FIB-SEM Tomography</p>
-          <div class="post-body collapsed" id="post-2-body">In my last post, I talked about 3D X-ray tomography and how it helps us visualize the internal structure of materials —like paper from pores to fiber networks to coating layers.
-
-          Synchrotron X-ray nano-tomography gives stunning resolution (~25 nm/pixel), but sometimes… we need to go even further.
-          
-          So what if we want to see beyond that, at just a few nanometers — while still building a 3D reconstruction?
-          
-          
-          🔬 That's where FIB-SEM tomography comes in.
-          FIB-SEM stands for Focused Ion Beam – Scanning Electron Microscopy.
-          
-           It works by:
-           1️⃣ Slicing the sample nanometer by nanometer with an ion beam
-           2️⃣ Imaging each slice with an electron beam
-           3️⃣ Reconstructing the structure in 3D
-           ✅ Resolution: down to ~5 nm 
-           ✅ Ideal for observing dense, nano-structured materials like MFC-based films
-           ✅ Gives insights into pore geometry, interfaces, coating homogeneity, and nanoscale defects
-          
-          ⚠️ Yes — it's destructive, and the volumes are small. But the level of detail is exceptional.
-          
-          💡 This technique helps us understand how nanofibers pack, how coatings spread, and what might be affecting barrier performance — from the inside.
-          
-          ➡️ In my next post, I'll show you an example of a 3D reconstruction of paper and how we extract pore information from it.
-          
-          Have you ever worked with FIB-SEM or nanoscale imaging? What was your biggest challenge?</div>
-          <button class="post-toggle" onclick="togglePost('post-2-body', this)">Read more ▾</button>
-          <div class="post-footer">
-            <div class="post-tags">
-              <span class="post-tag">#Science</span>
-              <span class="post-tag">#Imaging</span>
-            </div>
-            <a class="post-link" href="https://www.linkedin.com/feed/update/urn:li:activity:7343303745071370240/" target="_blank">View on LinkedIn ↗</a>
-          </div>
-        </div>
-
-      </div>
+<section id="experience">
+  <div class="container">
+    <p class="section-title">Conferences &amp; Teaching</p>
+    <div class="exp-item">
+      <div class="exp-year">2026</div>
+      <div><div class="exp-title">Raman + OCT Imaging: Towards a quantitative diagnosis of MIH</div><div class="exp-venue">LMPS PhD Day · Saclay, France</div><span class="exp-badge">Poster</span></div>
     </div>
-  </section>
+    <div class="exp-item">
+      <div class="exp-year">2026</div>
+      <div><div class="exp-title">Influence of microfibril size on adhesion of wet-laminated cellulose film</div><div class="exp-venue">JST-Interfaces / AMAC · Paris, France</div><span class="exp-badge">Oral</span></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2023</div>
+      <div><div class="exp-title">3D observation of (nano)-cellulose fiber networks by multiscale imaging</div><div class="exp-venue">Interpore · Edinburgh, Scotland</div><span class="exp-badge">Oral</span></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2023</div>
+      <div><div class="exp-title">Advanced characterization of novel multilayer cellulose material for food packaging</div><div class="exp-venue">Interpore · Edinburgh, Scotland</div><span class="exp-badge">Poster</span></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2025–present</div>
+      <div><div class="exp-title">Teaching Assistant, Practical Course — Microstructure Characterization</div><div class="exp-venue">CentraleSupélec, Saclay · Master / Engineering level</div></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2026–present</div>
+      <div><div class="exp-title">Student Project Supervisor — Engineering projects</div><div class="exp-venue">CentraleSupélec, Saclay</div></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    function togglePost(id, btn) {
-      var el = document.getElementById(id);
-      var collapsed = el.classList.contains('collapsed');
-      el.classList.toggle('collapsed');
-      btn.textContent = collapsed ? 'Show less ▴' : 'Read more ▾';
-    }
-  </script>
-
-  <!-- FOOTER -->
-  <footer>
-    <p class="footer-name">Nelly Vanessa Padilla Bello</p>
-    <p>Department of Dentistry · University Paris Cité</p>
-    <p><a href="mailto:nelly-vanessa.padilla-bello@u-pariscite.fr">nelly-vanessa.padilla-bello@u-pariscite.fr</a></p>
-    <br>
-    <p style="font-size:0.78rem; color:#666">© 2025 · Built with GitHub Pages</p>
-  </footer>
-
+<footer>
+  <p style="font-weight:600;color:#fff;margin-bottom:.3rem;">Nelly Vanessa Padilla Bello</p>
+  <p>Department of Dentistry · Université Paris Cité</p>
+  <p><a href="mailto:nelly-vanessa.padilla-bello@u-pariscite.fr">nelly-vanessa.padilla-bello@u-pariscite.fr</a></p>
+</footer>
 </body>
 </html>
