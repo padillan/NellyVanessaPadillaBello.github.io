@@ -29,7 +29,7 @@
   section.block img{width:100%;border-radius:6px;border:1px solid var(--border);margin-top:.6rem;}
   .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:.8rem;}
   .gallery figure{margin:0;}
-  .gallery figure img{width:100%;height:160px;object-fit:cover;border-radius:6px;border:1px solid var(--border);display:block;margin:0;}
+  .gallery figure img{width:100%;height:160px;object-fit:cover;object-position:center center;border-radius:6px;border:1px solid var(--border);display:block;margin:0;}
   .gallery figcaption{font-size:.76rem;color:var(--ink-faint);margin-top:.3rem;}
   footer{background:var(--accent);color:#dfe8e4;padding:1.6rem 1.5rem;text-align:center;font-size:.82rem;}
   footer a{color:#a9d6c4;}
@@ -51,9 +51,11 @@
     <h2>Background</h2>
     <p>Molar-Incisor Hypomineralization (MIH) is a dental condition affecting enamel, characterized by well-defined opacities and alterations in microstructure, chemical composition, mineral density, and mechanical properties.</p>
     <p>Diagnosis of MIH is typically based on visual examination and its treatment depends on lesion severity and depth, which cannot be assessed using current clinical tools. To address these limitations, we combine two non-invasive techniques: Raman spectroscopy to assess the physico-chemical alterations, and Optical Coherence Tomography (OCT) to investigate lesion location. The aim is to identify reliable criteria of distinction from Raman spectra and assess OCT's ability to delineate MIH lesions.</p>
-    <!-- To add more images, copy a <figure> block below -->
+    <!-- To add more images, copy a <figure> block below.
+         To zoom/reposition a specific image, add an inline style on the <img>, e.g.:
+         style="object-position:center top; transform:scale(1.15);" -->
     <div class="gallery">
-      <figure><img src="images_/MIH_teeth.png" alt="MIH background" /><figcaption>Optical image of MIH-affected molars</figcaption></figure>
+      <figure><img src="images_/MIH_teeth.png" alt="MIH background" style="object-position:center 30%;" /><figcaption>Optical image of MIH-affected molars</figcaption></figure>
     </div>
   </section>
 
