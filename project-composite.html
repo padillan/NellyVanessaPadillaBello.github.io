@@ -3,82 +3,546 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Microstructure & Composite Material Properties — Nelly Vanessa Padilla Bello</title>
+<title>Linking 3D Microstructure to Barrier Properties — Nelly Vanessa Padilla Bello</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
 <style>
   :root{
-    --ink:#0f1f28; --ink-muted:#3a6a58; --ink-faint:#7aaa90;
-    --bg:#f6faf8; --surface:#fff; --accent:#1a3a4a; --accent-light:#dff0e6; --border:#e0ece6;
-    --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+    --ink:#17242a;
+    --ink-muted:#52666d;
+    --ink-faint:#82949a;
+    --bg:#f7f9f9;
+    --surface:#fff;
+    --accent:#355c63;
+    --accent-light:#dce9eb;
+    --border:#e1e8e9;
+    --serif:'Lora',Georgia,serif;
+    --sans:'DM Sans',system-ui,sans-serif;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
-  nav{position:sticky;top:0;z-index:10;background:rgba(246,250,248,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;height:48px;}
-  nav a{color:var(--accent);text-decoration:none;font-size:.82rem;font-weight:500;}
-  .hero{padding:2.6rem 1.5rem 1.8rem;max-width:760px;margin:0 auto;border-bottom:1px solid var(--border);}
-  .hero p.label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.6rem;}
-  .hero h1{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.1rem);font-weight:600;line-height:1.25;margin-bottom:.6rem;}
-  .hero .subtitle{font-size:.95rem;color:var(--ink-muted);max-width:560px;}
-  main{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;}
-  section.block{margin-bottom:2.4rem;}
-  section.block h2{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:.8rem;color:var(--ink);border-bottom:2px solid var(--accent-light);padding-bottom:.35rem;}
-  section.block p{font-size:.92rem;color:var(--ink-muted);margin-bottom:.8rem;}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:.8rem;}
-  .gallery figure{margin:0;}
-  .gallery figure img{width:100%;height:160px;object-fit:cover;border-radius:6px;border:1px solid var(--border);display:block;margin:0;}
-  .gallery figcaption{font-size:.76rem;color:var(--ink-faint);margin-top:.3rem;}
-  .placeholder{background:#fffbea;border:1px dashed #f0c040;border-radius:4px;padding:.5rem .8rem;font-size:.8rem;color:#856404;}
-  footer{background:var(--accent);color:#dfe8e4;padding:1.6rem 1.5rem;text-align:center;font-size:.82rem;}
-  footer a{color:#a9d6c4;}
+
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:15px;
+  }
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(247,249,249,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    padding:0 1.5rem;
+    display:flex;
+    align-items:center;
+    height:48px;
+  }
+
+  nav a{
+    color:var(--accent);
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:500;
+  }
+
+  .hero{
+    padding:2.6rem 1.5rem 1.8rem;
+    max-width:760px;
+    margin:0 auto;
+    border-bottom:1px solid var(--border);
+  }
+
+  .hero p.label{
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+    margin-bottom:.6rem;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(1.6rem,4vw,2.1rem);
+    font-weight:600;
+    line-height:1.25;
+    margin-bottom:.6rem;
+  }
+
+  .hero .subtitle{
+    font-size:.95rem;
+    color:var(--ink-muted);
+    max-width:620px;
+  }
+
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:2rem 1.5rem 4rem;
+  }
+
+  section.block{
+    margin-bottom:2.4rem;
+  }
+
+  section.block h2{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:.8rem;
+    color:var(--ink);
+    border-bottom:2px solid var(--accent-light);
+    padding-bottom:.35rem;
+  }
+
+  section.block p{
+    font-size:.92rem;
+    color:var(--ink-muted);
+    margin-bottom:.8rem;
+  }
+
+  section.block ul{
+    margin:.5rem 0 1rem 1.2rem;
+    color:var(--ink-muted);
+    font-size:.9rem;
+  }
+
+  section.block ul li{
+    margin-bottom:.5rem;
+  }
+
+  section.block ul li strong{
+    color:var(--ink);
+  }
+
+  figure{
+    margin-top:.8rem;
+  }
+
+  figure img{
+    width:100%;
+    border-radius:6px;
+    border:1px solid var(--border);
+    display:block;
+    background:var(--surface);
+  }
+
+  figcaption{
+    font-size:.76rem;
+    color:var(--ink-faint);
+    margin-top:.3rem;
+  }
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:.75rem;
+    margin-top:.8rem;
+  }
+
+  .gallery figure{
+    margin:0;
+  }
+
+  .gallery figure img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:6px;
+    border:1px solid var(--border);
+    display:block;
+  }
+
+  .highlight{
+    background:var(--surface);
+    border-left:3px solid var(--accent);
+    padding:1rem 1.1rem;
+    margin:1rem 0;
+  }
+
+  .highlight p{
+    margin:0 !important;
+  }
+
+  footer{
+    background:var(--accent);
+    color:#dfe8e4;
+    padding:1.6rem 1.5rem;
+    text-align:center;
+    font-size:.82rem;
+  }
+
+  footer a{
+    color:#c8dde0;
+  }
 </style>
 </head>
+
 <body>
 
-<nav><a href="index.html">← Back to portfolio</a></nav>
+<nav>
+  <a href="index.html">← Back to portfolio</a>
+</nav>
 
 <header class="hero">
-  <p class="label">2020 – 2024</p>
-  <h1>Microstructure & Composite Material Properties</h1>
-  <p class="subtitle">Combining multi-scale imaging and material characterization techniques to establish links between microstructure, barrier performance, and adhesion in sustainable composite materials.</p>
+
+  <p class="label">2019 – 2024 · PhD</p>
+
+  <h1>
+    Linking 3D Microstructure to Barrier Properties of MFC-Coated Paper
+  </h1>
+
+  <p class="subtitle">
+    Multiscale characterization of microfibrillated cellulose films wet-laminated
+    onto paper and paperboard for bio-based food packaging
+  </p>
+
 </header>
+
 
 <main>
 
+  <!-- BACKGROUND -->
+
   <section class="block">
+
     <h2>Background</h2>
-    <p class="placeholder">Add background / context for this project here.</p>
-    <!-- To add images, copy a <figure> block below inside .gallery -->
-    <div class="gallery">
-      <figure><img src="images_/composite_background.jpg" alt="Background" /><figcaption>Caption here</figcaption></figure>
+
+    <p>
+      The transition toward more sustainable food packaging requires alternatives
+      to conventional fossil-based plastic barriers. Paper and paperboard are
+      renewable materials, but their porous structure limits their ability to
+      provide effective barriers against gases and water.
+    </p>
+
+    <p>
+      Microfibrillated cellulose (MFC) films can provide improved barrier
+      properties while maintaining a predominantly bio-based packaging structure.
+      However, their performance depends strongly on how the MFC film interacts
+      with the underlying paper and on the resulting three-dimensional
+      microstructure.
+    </p>
+
+    <div class="highlight">
+      <p>
+        <strong>Research question:</strong>
+        How does the 3D microstructure of a wet-laminated MFC film control
+        adhesion and barrier properties?
+      </p>
     </div>
+
+    <figure>
+      <img
+        src="images_/phd_overview.png"
+        alt="MFC film wet laminated onto paper"
+        style="height:auto;object-fit:contain;"
+      />
+      <figcaption>
+        Concept of a microfibrillated cellulose film wet-laminated onto paper or paperboard.
+      </figcaption>
+    </figure>
+
   </section>
 
-  <section class="block">
-    <h2>Methods</h2>
-    <p class="placeholder">Add the techniques and methodology used here.</p>
-    <div class="gallery">
-      <figure><img src="images_/composite_methods.jpg" alt="Methods overview" /><figcaption>Caption here</figcaption></figure>
-    </div>
-  </section>
+
+  <!-- OBJECTIVES -->
 
   <section class="block">
-    <h2>Results</h2>
-    <p class="placeholder">Add your key results and findings here.</p>
-    <div class="gallery">
-      <figure><img src="images_/composite_results.jpg" alt="Results" /><figcaption>Caption here</figcaption></figure>
-      <figure><img src="images_/composite_results2.jpg" alt="Additional results" /><figcaption>Caption here</figcaption></figure>
-    </div>
+
+    <h2>Objectives</h2>
+
+    <p>
+      The PhD aimed to establish a quantitative link between the structure of
+      MFC-coated paper and its functional properties.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Characterize</strong> the three-dimensional structure of the
+        paper–MFC interface across multiple length scales.
+      </li>
+
+      <li>
+        <strong>Quantify</strong> microstructural descriptors such as porosity,
+        connectivity and interfacial contact.
+      </li>
+
+      <li>
+        <strong>Evaluate</strong> adhesion and barrier properties of the
+        resulting multilayer materials.
+      </li>
+
+      <li>
+        <strong>Relate</strong> microstructural features to macroscopic
+        performance.
+      </li>
+
+    </ul>
+
   </section>
 
+
+  <!-- METHODS -->
+
   <section class="block">
+
+    <h2>Multiscale characterization</h2>
+
+    <p>
+      A combination of imaging techniques was used to characterize the material
+      from the micrometre to the nanometre scale.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Synchrotron micro-computed tomography</strong>
+        to reconstruct the 3D structure of the paper–MFC system and quantify
+        porosity, connectivity and interfacial contact.
+      </li>
+
+      <li>
+        <strong>Synchrotron nano-computed tomography</strong>
+        to investigate the MFC network at the nanoscale.
+      </li>
+
+      <li>
+        <strong>FIB-SEM</strong>
+        to observe the local microstructure of the MFC film and its interface
+        with the paper substrate.
+      </li>
+
+      <li>
+        <strong>Image analysis</strong>
+        using segmentation and quantitative descriptors to transform
+        3D images into measurable structural parameters.
+      </li>
+
+    </ul>
+
+    <figure>
+      <img
+        src="images_/phd_multiscale.png"
+        alt="Multiscale characterization techniques"
+        style="height:auto;object-fit:contain;"
+      />
+      <figcaption>
+        Multiscale approach combining X-ray micro-CT, nano-CT and FIB-SEM.
+      </figcaption>
+    </figure>
+
+  </section>
+
+
+  <!-- QUANTIFICATION -->
+
+  <section class="block">
+
+    <h2>From images to quantitative descriptors</h2>
+
+    <p>
+      Three-dimensional images were converted into quantitative descriptors
+      capable of describing the structure of the MFC layer and its interface
+      with the paper.
+    </p>
+
+    <div class="gallery">
+
+      <figure>
+        <img
+          src="images_/phd_porosity.png"
+          alt="3D porosity analysis"
+        />
+        <figcaption>
+          3D pore structure and porosity
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img
+          src="images_/phd_contact_area.png"
+          alt="Interfacial contact analysis"
+        />
+        <figcaption>
+          Interfacial contact between MFC and paper
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <p style="margin-top:1rem;">
+      These descriptors provided a quantitative way to compare materials with
+      different MFC formulations, coating conditions and paper substrates.
+    </p>
+
+  </section>
+
+
+  <!-- PROPERTIES -->
+
+  <section class="block">
+
+    <h2>From structure to properties</h2>
+
+    <p>
+      The structural descriptors were compared with functional measurements
+      including adhesion and barrier properties.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Oxygen transmission rate (OTR)</strong>
+        to evaluate gas barrier performance.
+      </li>
+
+      <li>
+        <strong>Water vapour transmission rate (WVTR)</strong>
+        to assess water vapour barrier properties.
+      </li>
+
+      <li>
+        <strong>Peel testing</strong>
+        to quantify adhesion between the MFC layer and the paper substrate.
+      </li>
+
+      <li>
+        <strong>Surface characterization</strong>
+        including roughness, contact angle and surface energy.
+      </li>
+
+    </ul>
+
+    <figure>
+      <img
+        src="images_/phd_structure_properties.png"
+        alt="Relationship between microstructure and properties"
+        style="height:auto;object-fit:contain;"
+      />
+      <figcaption>
+        Linking microstructural descriptors with adhesion and barrier properties.
+      </figcaption>
+    </figure>
+
+  </section>
+
+
+  <!-- RESULTS -->
+
+  <section class="block">
+
+    <h2>Key findings</h2>
+
+    <p>
+      The 3D characterization revealed important differences in the structure
+      and interfacial organization of the MFC layers depending on the MFC
+      formulation and coating conditions.
+    </p>
+
+    <p>
+      The analysis showed that barrier and adhesion performance cannot be
+      described only by the amount of MFC deposited. Instead, the resulting
+      three-dimensional organization of the MFC network and its contact with
+      the paper substrate play an important role.
+    </p>
+
+    <p>
+      In particular, the study highlighted the importance of
+      <strong>porosity, pore connectivity and interfacial contact</strong>
+      as structural descriptors for understanding the performance of
+      wet-laminated MFC films.
+    </p>
+
+    <div class="gallery">
+
+      <figure>
+        <img
+          src="images_/phd_microstructure.jpg"
+          alt="MFC microstructure"
+        />
+        <figcaption>
+          3D microstructure of the MFC-coated paper
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img
+          src="images_/phd_results.jpg"
+          alt="PhD results"
+        />
+        <figcaption>
+          Quantitative relationship between structure and properties
+        </figcaption>
+      </figure>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTRIBUTION -->
+
+  <section class="block">
+
+    <h2>Scientific contribution</h2>
+
+    <p>
+      This work established a multiscale characterization strategy to move
+      from qualitative observation of paper-based multilayers toward
+      quantitative, image-derived descriptions of their three-dimensional
+      structure.
+    </p>
+
+    <p>
+      By connecting these descriptors with adhesion and barrier measurements,
+      the study provides a framework for understanding how processing and
+      material architecture influence the performance of bio-based packaging
+      materials.
+    </p>
+
+  </section>
+
+
+  <!-- PERSPECTIVES -->
+
+  <section class="block">
+
     <h2>Perspectives</h2>
-    <p class="placeholder">Add future work / perspectives here.</p>
+
+    <p>
+      The approach developed during the PhD can be extended to other
+      hierarchical porous materials and multilayer systems where functional
+      properties depend on three-dimensional architecture.
+    </p>
+
+    <p>
+      More broadly, the work illustrates how
+      <strong>multiscale imaging, image analysis and material-property
+      measurements</strong> can be combined to establish quantitative
+      structure–property relationships.
+    </p>
+
   </section>
 
 </main>
 
+
 <footer>
+
   <a href="index.html">← Back to portfolio</a>
+
 </footer>
 
 </body>
