@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Quantifying Uncertainty in BIMrock/BIMsoil Characterization — Nelly Vanessa Padilla Bello</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#17242a;
+    --ink-muted:#53666c;
+    --ink-faint:#829398;
+    --bg:#f7f9f8;
+    --surface:#fff;
+    --accent:#4d5f54;
+    --accent-light:#dfe8e2;
+    --border:#e1e7e3;
+    --serif:'Lora',Georgia,serif;
+    --sans:'DM Sans',system-ui,sans-serif;
+  }
+
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:15px;
+  }
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(247,249,248,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    padding:0 1.5rem;
+    display:flex;
+    align-items:center;
+    height:48px;
+  }
+
+  nav a{
+    color:var(--accent);
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:500;
+  }
+
+  .hero{
+    padding:2.6rem 1.5rem 1.8rem;
+    max-width:760px;
+    margin:0 auto;
+    border-bottom:1px solid var(--border);
+  }
+
+  .hero p.label{
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+    margin-bottom:.6rem;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(1.6rem,4vw,2.1rem);
+    font-weight:600;
+    line-height:1.25;
+    margin-bottom:.6rem;
+  }
+
+  .hero .subtitle{
+    font-size:.95rem;
+    color:var(--ink-muted);
+    max-width:620px;
+  }
+
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:2rem 1.5rem 4rem;
+  }
+
+  section.block{
+    margin-bottom:2.4rem;
+  }
+
+  section.block h2{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:.8rem;
+    color:var(--ink);
+    border-bottom:2px solid var(--accent-light);
+    padding-bottom:.35rem;
+  }
+
+  section.block p{
+    font-size:.92rem;
+    color:var(--ink-muted);
+    margin-bottom:.8rem;
+  }
+
+  section.block ul{
+    margin:.5rem 0 1rem 1.2rem;
+    color:var(--ink-muted);
+    font-size:.9rem;
+  }
+
+  section.block ul li{
+    margin-bottom:.5rem;
+  }
+
+  section.block ul li strong{
+    color:var(--ink);
+  }
+
+  figure{
+    margin-top:.8rem;
+  }
+
+  figure img{
+    width:100%;
+    border-radius:6px;
+    border:1px solid var(--border);
+    display:block;
+    background:var(--surface);
+  }
+
+  figcaption{
+    font-size:.76rem;
+    color:var(--ink-faint);
+    margin-top:.3rem;
+  }
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:.75rem;
+    margin-top:.8rem;
+  }
+
+  .gallery figure{
+    margin:0;
+  }
+
+  .gallery figure img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:6px;
+    border:1px solid var(--border);
+    display:block;
+  }
+
+  .highlight{
+    background:var(--surface);
+    border-left:3px solid var(--accent);
+    padding:1rem 1.1rem;
+    margin:1rem 0;
+  }
+
+  .highlight p{
+    margin:0 !important;
+  }
+
+  footer{
+    background:var(--accent);
+    color:#e2e9e4;
+    padding:1.6rem 1.5rem;
+    text-align:center;
+    font-size:.82rem;
+  }
+
+  footer a{
+    color:#cbd9d0;
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">← Back to portfolio</a>
+</nav>
+
+
+<header class="hero">
+
+  <p class="label">2016 – 2017 · Civil Engineering Final Project</p>
+
+  <h1>
+    Quantifying Uncertainty in BIMrock/BIMsoil Characterization
+  </h1>
+
+  <p class="subtitle">
+    A computational approach to estimating volumetric block proportion
+    from one-dimensional borehole information
+  </p>
+
+</header>
+
+
+<main>
+
+
+  <!-- BACKGROUND -->
+
+  <section class="block">
+
+    <h2>Background</h2>
+
+    <p>
+      BIMrocks and BIMsoils are heterogeneous geomaterials composed of
+      relatively strong rock blocks embedded within a weaker matrix.
+      Their mechanical behaviour depends strongly on the proportion of
+      blocks present within the material.
+    </p>
+
+    <p>
+      However, the three-dimensional distribution of blocks cannot usually
+      be observed directly during a conventional geotechnical investigation.
+      Boreholes provide one-dimensional information, from which the
+      volumetric block proportion must be estimated.
+    </p>
+
+    <p>
+      Because the blocks are randomly distributed, different boreholes can
+      intersect very different amounts of block material. This introduces
+      uncertainty into the estimation of the true volumetric block proportion.
+    </p>
+
+    <div class="highlight">
+
+      <p>
+        <strong>Research question:</strong>
+        How does the geometry of the blocks and the amount of borehole
+        information influence the uncertainty in estimating their volumetric
+        proportion?
+      </p>
+
+    </div>
+
+    <figure>
+
+      <img
+        src="images_/bimrock_concept.png"
+        alt="BIMrock/BIMsoil concept"
+        style="height:auto;object-fit:contain;"
+      />
+
+      <figcaption>
+        Schematic representation of blocks embedded within a weaker matrix.
+      </figcaption>
+
+    </figure>
+
+  </section>
+
+
+  <!-- OBJECTIVE -->
+
+  <section class="block">
+
+    <h2>Objective</h2>
+
+    <p>
+      The project aimed to quantify the uncertainty associated with estimating
+      the volumetric block proportion from one-dimensional borehole data.
+    </p>
+
+    <p>
+      The study specifically investigated how the uncertainty changes with
+      the amount of subsurface information and with the geometry of the
+      embedded blocks.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Number of boreholes</strong> and the amount of information
+        available from the subsurface.
+      </li>
+
+      <li>
+        <strong>Borehole length</strong> and its influence on the reliability
+        of the estimated block proportion.
+      </li>
+
+      <li>
+        <strong>Block geometry</strong>, including size and shape.
+      </li>
+
+      <li>
+        <strong>Block orientation</strong> and its effect on the measurements
+        obtained from one-dimensional sampling.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- METHODOLOGY -->
+
+  <section class="block">
+
+    <h2>Computational modelling</h2>
+
+    <p>
+      A computational algorithm was developed to generate and analyse
+      simplified BIMrock/BIMsoil configurations containing blocks embedded
+      within a matrix.
+    </p>
+
+    <p>
+      Virtual boreholes were then used to sample the three-dimensional
+      material along one-dimensional lines, reproducing the type of
+      information obtained during a conventional geotechnical investigation.
+    </p>
+
+    <figure>
+
+      <img
+        src="images_/bimrock_model.png"
+        alt="Computational BIMrock model"
+        style="height:auto;object-fit:contain;"
+      />
+
+      <figcaption>
+        Computational representation of a heterogeneous block-in-matrix material
+        and one-dimensional borehole sampling.
+      </figcaption>
+
+    </figure>
+
+  </section>
+
+
+  <!-- APPROACH -->
+
+  <section class="block">
+
+    <h2>From 3D structure to 1D information</h2>
+
+    <p>
+      The known volumetric block proportion of each simulated material was
+      compared with the proportion estimated from virtual boreholes.
+    </p>
+
+    <p>
+      By repeating the sampling process for different borehole configurations,
+      it was possible to evaluate how closely one-dimensional measurements
+      represented the underlying three-dimensional material.
+    </p>
+
+    <div class="gallery">
+
+      <figure>
+
+        <img
+          src="images_/bimrock_boreholes.png"
+          alt="Virtual boreholes"
+        />
+
+        <figcaption>
+          One-dimensional sampling of the heterogeneous material
+        </figcaption>
+
+      </figure>
+
+      <figure>
+
+        <img
+          src="images_/bimrock_uncertainty.png"
+          alt="Uncertainty analysis"
+        />
+
+        <figcaption>
+          Difference between estimated and actual block proportion
+        </figcaption>
+
+      </figure>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESULTS -->
+
+  <section class="block">
+
+    <h2>Key findings</h2>
+
+    <p>
+      The results showed that increasing the number and total length of
+      boreholes reduces the epistemic uncertainty associated with estimating
+      the volumetric block proportion.
+    </p>
+
+    <p>
+      The simulations also demonstrated that block size, shape and orientation
+      influence the variability observed in one-dimensional measurements.
+      Nevertheless, increasing the amount of subsurface investigation reduced
+      the uncertainty regardless of these geometric characteristics.
+    </p>
+
+    <p>
+      Importantly, the uncertainty did not decrease indefinitely. A lower
+      limit remained because the heterogeneous material itself has a random
+      spatial distribution of blocks.
+    </p>
+
+    <figure>
+
+      <img
+        src="images_/bimrock_results.png"
+        alt="BIMrock uncertainty results"
+        style="height:auto;object-fit:contain;"
+      />
+
+      <figcaption>
+        Influence of borehole investigation on the uncertainty in volumetric
+        block proportion.
+      </figcaption>
+
+    </figure>
+
+  </section>
+
+
+  <!-- ENGINEERING RELEVANCE -->
+
+  <section class="block">
+
+    <h2>Engineering relevance</h2>
+
+    <p>
+      Estimating the volumetric block proportion is important for the
+      geotechnical characterization of BIMrocks and BIMsoils because their
+      heterogeneous structure can strongly influence their mechanical
+      behaviour.
+    </p>
+
+    <p>
+      The computational approach provides a way to evaluate the reliability
+      of information obtained from conventional borehole investigations and
+      helps identify how much subsurface investigation may be required to
+      reduce uncertainty.
+    </p>
+
+  </section>
+
+
+  <!-- CONTRIBUTION -->
+
+  <section class="block">
+
+    <h2>Scientific contribution</h2>
+
+    <p>
+      This work combined geotechnical characterization, probabilistic
+      uncertainty analysis and computational modelling to investigate the
+      limitations of one-dimensional subsurface information.
+    </p>
+
+    <p>
+      The study resulted in a peer-reviewed publication:
+      <em>
+        “Uncertainty in the determination of the volumetric block proportion
+        of BIMrocks/BIMsoils from one-dimensional information”
+      </em>,
+      published in <em>Boletín de Geología</em>, 42(1), 69–80, in 2020.
+      :contentReference[oaicite:1]{index=1}
+    </p>
+
+  </section>
+
+
+  <!-- PERSPECTIVES -->
+
+  <section class="block">
+
+    <h2>Perspectives</h2>
+
+    <p>
+      The approach can be extended to more complex three-dimensional
+      representations of heterogeneous geomaterials and to the integration
+      of additional sources of geological and geotechnical information.
+    </p>
+
+    <p>
+      More broadly, the project illustrates how computational modelling can
+      be used to quantify uncertainty when the three-dimensional structure
+      of a material or geological formation can only be partially observed.
+    </p>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  <a href="index.html">← Back to portfolio</a>
+
+</footer>
+
+</body>
+</html>
